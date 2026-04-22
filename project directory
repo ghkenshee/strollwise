@@ -1,0 +1,174 @@
+strollwise/
+│
+├── 📄 README.md
+├── 📄 .gitignore
+├── 📄 .env.example
+│
+├── mobile/                          # React Native / Expo App
+│   ├── 📄 app.json
+│   ├── 📄 package.json
+│   ├── 📄 tsconfig.json
+│   │
+│   ├── app/                         # Expo Router screens
+│   │   ├── 📄 _layout.tsx           # Root layout
+│   │   ├── 📄 index.tsx             # Entry — Onboarding
+│   │   │
+│   │   ├── (local)/                 # Local User screens
+│   │   │   ├── 📄 _layout.tsx
+│   │   │   ├── 📄 map.tsx           # Main map screen
+│   │   │   ├── 📄 pin-submit.tsx    # Tag/Pin submission
+│   │   │   └── 📄 zone-detail.tsx   # Zone detail screen
+│   │   │
+│   │   └── (tourist)/               # International User screens
+│   │       ├── 📄 _layout.tsx
+│   │       ├── 📄 map.tsx           # Main map screen
+│   │       ├── 📄 zone-detail.tsx   # Zone detail screen
+│   │       └── 📄 zone-follow.tsx   # Follow a zone
+│   │
+│   ├── components/                  # Reusable UI components
+│   │   ├── map/
+│   │   │   ├── 📄 HexZoneLayer.tsx  # H3 hexagon renderer
+│   │   │   ├── 📄 ZoneLegend.tsx    # Color legend
+│   │   │   ├── 📄 ZoneFilter.tsx    # Filter by zone type
+│   │   │   └── 📄 RestrictedBanner.tsx # Restricted zone notice
+│   │   │
+│   │   ├── pin/
+│   │   │   ├── 📄 PinTypeSelector.tsx   # Hidden Gem / Danger etc.
+│   │   │   ├── 📄 PinConfirmation.tsx   # Submission confirmation
+│   │   │   └── 📄 AnonymousNotice.tsx   # Privacy explainer
+│   │   │
+│   │   ├── zone/
+│   │   │   ├── 📄 ZoneCard.tsx          # Zone detail card
+│   │   │   ├── 📄 ZoneConfidence.tsx    # Confidence indicator
+│   │   │   ├── 📄 ZoneLifecycleBadge.tsx # Unthreshold/Emerging/Defined
+│   │   │   └── 📄 ZoneDemographic.tsx   # Yellow/Blue/Green breakdown
+│   │   │
+│   │   └── shared/
+│   │       ├── 📄 Button.tsx
+│   │       ├── 📄 Card.tsx
+│   │       └── 📄 LoadingSpinner.tsx
+│   │
+│   ├── hooks/                       # Custom React hooks
+│   │   ├── 📄 useLocation.ts        # GPS access
+│   │   ├── 📄 useH3Zone.ts          # GPS → H3 conversion
+│   │   ├── 📄 useZoneIntelligence.ts # Zone data fetching
+│   │   └── 📄 useRestrictedCheck.ts  # Restricted zone check
+│   │
+│   ├── services/                    # API calls
+│   │   ├── 📄 pinService.ts         # Pin submission
+│   │   ├── 📄 zoneService.ts        # Zone intelligence fetch
+│   │   └── 📄 registryService.ts    # Zone registry fetch
+│   │
+│   ├── utils/                       # Utility functions
+│   │   ├── 📄 h3Utils.ts            # H3 helper functions
+│   │   ├── 📄 zoneColors.ts         # Color assignment logic
+│   │   ├── 📄 privacyUtils.ts       # GPS stripping logic
+│   │   └── 📄 thresholdUtils.ts     # Lifecycle state logic
+│   │
+│   ├── constants/                   # App-wide constants
+│   │   ├── 📄 zoneTypes.ts          # Hidden Gem, Danger, etc.
+│   │   ├── 📄 h3Resolution.ts       # Resolution = 8
+│   │   ├── 📄 thresholds.ts         # Pin count thresholds
+│   │   └── 📄 colors.ts             # Yellow, Blue, Green
+│   │
+│   └── types/                       # TypeScript types
+│       ├── 📄 zone.types.ts
+│       ├── 📄 pin.types.ts
+│       └── 📄 user.types.ts
+│
+├── backend/                         # Node.js + Express API
+│   ├── 📄 package.json
+│   ├── 📄 tsconfig.json
+│   ├── 📄 server.ts                 # Entry point
+│   │
+│   ├── routes/                      # API routes
+│   │   ├── 📄 pin.routes.ts         # POST /pins
+│   │   ├── 📄 zone.routes.ts        # GET /zones
+│   │   └── 📄 registry.routes.ts    # GET /registry
+│   │
+│   ├── controllers/                 # Route handlers
+│   │   ├── 📄 pin.controller.ts
+│   │   ├── 📄 zone.controller.ts
+│   │   └── 📄 registry.controller.ts
+│   │
+│   ├── services/                    # Business logic
+│   │   ├── 📄 pinService.ts         # Pin validation + storage
+│   │   ├── 📄 zoneAggregator.ts     # Zone aggregation engine
+│   │   ├── 📄 thresholdService.ts   # Lifecycle state assignment
+│   │   ├── 📄 demographicService.ts # Yellow/Blue/Green assignment
+│   │   ├── 📄 decayService.ts       # Zone decay logic
+│   │   └── 📄 registryService.ts    # Zone registry access
+│   │
+│   ├── middleware/                  # Express middleware
+│   │   ├── 📄 anonymize.ts          # Strip PII before storage
+│   │   ├── 📄 restrictedCheck.ts    # Block restricted zone pins
+│   │   ├── 📄 rateLimit.ts          # Prevent pin spam
+│   │   └── 📄 validate.ts           # Request validation
+│   │
+│   ├── models/                      # Database models
+│   │   ├── 📄 pin.model.ts
+│   │   ├── 📄 zone.model.ts
+│   │   └── 📄 registry.model.ts
+│   │
+│   ├── db/                          # Supabase connection
+│   │   ├── 📄 supabase.ts           # Supabase client
+│   │   └── 📄 schema.sql            # Database schema
+│   │
+│   └── utils/
+│       ├── 📄 h3Utils.ts            # Server-side H3 helpers
+│       └── 📄 logger.ts             # Logging utility
+│
+├── ml/                              # Python ML Pipeline
+│   ├── 📄 requirements.txt
+│   ├── 📄 main.py                   # Pipeline entry point
+│   │
+│   ├── clustering/
+│   │   ├── 📄 dbscan.py             # DBSCAN implementation
+│   │   ├── 📄 hdbscan_cluster.py    # HDBSCAN implementation
+│   │   └── 📄 evaluator.py          # Clustering accuracy metrics
+│   │
+│   ├── aggregation/
+│   │   ├── 📄 zone_aggregator.py    # Zone pin aggregation
+│   │   ├── 📄 threshold_engine.py   # Lifecycle state logic
+│   │   └── 📄 decay_engine.py       # Zone decay logic
+│   │
+│   ├── intelligence/
+│   │   ├── 📄 zone_classifier.py    # Dominant type detection
+│   │   ├── 📄 demographic_scorer.py # Yellow/Blue/Green scoring
+│   │   └── 📄 confidence_scorer.py  # Zone confidence calculation
+│   │
+│   └── utils/
+│       ├── 📄 h3_utils.py           # H3 Python helpers
+│       ├── 📄 supabase_client.py    # Supabase connection
+│       └── 📄 logger.py
+│
+├── registry/                        # Zone Registry (Researcher-defined)
+│   ├── 📄 README.md                 # How to update the registry
+│   │
+│   ├── predefined/                  # Pre-defined seed zones
+│   │   ├── 📄 cebu_city.json        # Pre-defined zones for Cebu City
+│   │   ├── 📄 mandaue.json          # Pre-defined zones for Mandaue
+│   │   └── 📄 lapu_lapu.json        # Pre-defined zones for Lapu-Lapu
+│   │
+│   └── restricted/                  # Restricted zones
+│       ├── 📄 military.json         # Military installations
+│       ├── 📄 airports.json         # Airport perimeters
+│       └── 📄 government.json       # Government facilities
+│
+├── docs/                            # Documentation
+│   ├── 📄 architecture.md           # System architecture
+│   ├── 📄 privacy.md                # Privacy-by-design documentation
+│   ├── 📄 api.md                    # API endpoint documentation
+│   ├── 📄 zone-lifecycle.md         # Zone lifecycle documentation
+│   └── 📄 h3-resolution.md          # H3 resolution rationale
+│
+└── research/                        # Thesis research files
+    ├── 📄 statement-of-problem.md
+    ├── 📄 research-questions.md
+    ├── 📄 scope-limitations.md
+    ├── 📄 definition-of-terms.md
+    └── wireframes/
+        ├── 📄 map.png
+        ├── 📄 pin-submission.png
+        ├── 📄 zone-details.png
+        └── 📄 onboarding.png
