@@ -154,21 +154,3 @@ strollwise/
 │       ├── 📄 military.json         # Military installations
 │       ├── 📄 airports.json         # Airport perimeters
 │       └── 📄 government.json       # Government facilities
-│
-├── docs/                            # Documentation
-│   ├── 📄 architecture.md           # System architecture
-│   ├── 📄 privacy.md                # Privacy-by-design documentation
-│   ├── 📄 api.md                    # API endpoint documentation
-│   ├── 📄 zone-lifecycle.md         # Zone lifecycle documentation
-│   └── 📄 h3-resolution.md          # H3 resolution rationale
-│
-└── research/                        # Thesis research files
-    ├── 📄 statement-of-problem.md
-    ├── 📄 research-questions.md
-    ├── 📄 scope-limitations.md
-    ├── 📄 definition-of-terms.md
-    └── wireframes/
-        ├── 📄 map.png
-        ├── 📄 pin-submission.png
-        ├── 📄 zone-details.png
-        └── 📄 onboarding.png
